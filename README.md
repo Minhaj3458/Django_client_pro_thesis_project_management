@@ -1,1 +1,2 @@
-# Django_client_pro_thesis_project_management
+Project Video YouTube Link :
+https://youtu.be/AozLrf5sMKk
