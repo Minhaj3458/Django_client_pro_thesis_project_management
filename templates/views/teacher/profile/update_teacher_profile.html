@@ -1,0 +1,147 @@
+{% extends '../../layouts/backend/app.html' %}
+
+{% block title%}
+        | update teacher profile
+{% endblock %}
+{% block content %}
+    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="{% url 'manage_teacher_profile' %}">Manage Profile</a></li>
+                                            <li class="breadcrumb-item active">Update  Profile</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">Update Profile</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+<!--                            <div class="col-1"></div>-->
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body  ">
+<!--                                        {% if messages %}-->
+<!--                                          {% for message in messages %}-->
+<!--                                          <div class="alert alert-{{message.tags}} alert-dismissible  bg-{{message.tags}} text-white border-0 fade show" role="alert">-->
+<!--                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
+<!--                                            <strong>{{message}}</strong>-->
+<!--                                          </div>-->
+<!--                                          {% endfor %}-->
+<!--                                        {% endif %}-->
+                                        <h4 class="header-title mb-3">Update  Profile</h4>
+
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="input-types-preview">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <form  action="" class="form-horizontal"  enctype="multipart/form-data" method="POST">
+                                                             {% csrf_token %}
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="userName">User name</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="username" name="username" value="{{ user_info.username }}" placeholder="user name" required readonly>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="email">Email</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="email" class="form-control" id="email" name="email" value="{{user_info.email}}"  placeholder="email" required>
+                                                                        </div>
+                                                                    </div>
+                                                                   <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="first_name">First Name</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{user_info.first_name}}"  placeholder="first Name" >
+                                                                        </div>
+                                                                    </div>
+                                                                     <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="last_name">Last Name</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{user_info.last_name}}"  placeholder="last Name" >
+                                                                        </div>
+                                                                    </div>
+                                                                     <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="teacher_id ">Teacher Id</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="teacher_id " name="teacher_id" value="{{user_info.teacher_id}}"  placeholder="student Id " required readonly>
+                                                                        </div>
+                                                                    </div>
+
+
+                                                                </div> <!-- end col -->
+                                                                  <div class="col-6">
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="department">Department</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="department" name="department" value="{{user_info.Teacher_profile.department}}" placeholder="department" >
+                                                                        </div>
+                                                                    </div>
+
+                                                                   <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="phone">Phone</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="phone" name="phone" value="{{user_info.Teacher_profile.phone}}"  placeholder="phone">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="image">Image</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="file" class="form-control" id="image" name="image">
+                                                                        </div>
+                                                                    </div>
+                                                                      <input type="text" class="form-control" name="old_image" value="{{user_info.Teacher_profile.image}}" hidden>
+                                                                      <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="address">Address</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="address" name="address" value="{{user_info.Teacher_profile.address}}"  placeholder="address">
+                                                                        </div>
+                                                                     </div>
+                                                                      <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="about">About</label>
+                                                                        <div class="col-md-9">
+                                                                            <textarea id="simplemde1" class="form-control" id="about" name="about" maxlength="300">{{user_info.Teacher_profile.about}}</textarea>
+                                                                        </div>
+                                                                      </div>
+
+                                                                </div> <!-- end col -->
+                                                                  <div class="col-6">
+                                                                      <div class="row ">
+                                                                        <div class="col-md-12">
+                                                                           <button type="submit"  class="btn-lg btn-outline-success btn-rounded h3 "><i class="uil-cloud-computing"></i> Update </button>
+                                                                        </div>
+                                                                      </div>
+                                                                  </div>
+
+                                                            </div> <!-- end row -->
+
+                                                        </form>
+                                                    </div> <!-- end col -->
+
+
+                                                </div>
+                                                <!-- end row-->
+                                            </div> <!-- end preview-->
+
+                                        </div> <!-- end tab-content-->
+                                    </div> <!-- end card-body -->
+                                </div> <!-- end card -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+
+
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+{% endblock %}

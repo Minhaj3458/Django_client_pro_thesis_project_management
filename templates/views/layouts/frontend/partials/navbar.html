@@ -1,0 +1,46 @@
+   <nav class="navbar navbar-expand-lg bg-white navbar-light shadow-sm px-5 py-3 py-lg-0">
+        <a href="{% url 'home' %}" class="navbar-brand p-0">
+
+
+            <h1 class="m-0 text-uppercase text-primary"><i class="far fa-smile text-primary me-2"></i>Thesis-Project</h1>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            <div class="navbar-nav ms-auto py-0 me-n3">
+                <a href="{% url 'home' %}" class="nav-item nav-link active">Home</a>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Thesis Type</a>
+                    <div class="dropdown-menu m-0">
+                        {% if thesis_type %}
+                           {% for show in thesis_type %}
+                            <a href="{% url 'thesis_type' id=show.id %}" class="dropdown-item">{{ show.thesis_type }}</a>
+                          {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Project Type</a>
+                    <div class="dropdown-menu m-0">
+                        {% if project_type %}
+                           {% for show in project_type %}
+                            <a href="{% url 'project_type' id=show.id %}" class="dropdown-item">{{ show.project_type }}</a>
+                          {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <div class="nav-item dropdown">
+                    <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Department</a>
+                    <div class="dropdown-menu m-0">
+                        {% if department %}
+                           {% for show in department %}
+                            <a href="{% url 'department' id=show.id %}" class="dropdown-item">{{ show.department_name }}</a>
+                          {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <a href="{% url 'contact_page' %}" class="nav-item nav-link">Contact</a>
+            </div>
+        </div>
+    </nav>

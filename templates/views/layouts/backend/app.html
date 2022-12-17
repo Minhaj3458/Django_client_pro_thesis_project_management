@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>{% block title %}  {% endblock %}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="" name="description">
+        <meta content="" name="author">
+        {% load static %}
+
+        {% include './partials/css.html' %}
+        {% block css %}
+        {% endblock %}
+
+    </head>
+
+    <body class="loading" data-layout-config='{"leftSideBarTheme":"dark","layoutBoxed":false, "leftSidebarCondensed":false, "leftSidebarScrollable":false,"darkMode":true, "showRightSidebarOnStart": true}'>
+        <!-- Begin page -->
+        <div class="wrapper">
+            <!-- ========== Left Sidebar Start ========== -->
+           {% include './partials/sidebar.html' %}
+            <!-- Left Sidebar End -->
+
+            <!-- ============================================================== -->
+            <!-- Start Page Content here -->
+            <!-- ============================================================== -->
+
+            <div class="content-page">
+                <div class="content">
+                    <!-- Topbar Start -->
+                   {% include './partials/topbar.html' %}
+                    <!-- end Topbar -->
+
+                    <!-- Start Content-->
+                     {% block content %}
+                      {% endblock %}
+                  <!-- container -->
+
+                </div> <!-- content -->
+
+                <!-- Footer Start -->
+            {% include './partials/footer.html' %}
+                <!-- end Footer -->
+
+            </div>
+
+            <!-- ============================================================== -->
+            <!-- End Page content -->
+            <!-- ============================================================== -->
+
+
+        </div>
+        <!-- END wrapper -->
+
+        {% include './partials/js.html' %}
+        {% block js %}
+        {% endblock %}
+
+
+    </body>
+</html>

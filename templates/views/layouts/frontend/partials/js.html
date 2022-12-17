@@ -1,0 +1,28 @@
+
+{% load static %}
+<!-- JavaScript Libraries -->
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{%static 'frontend/lib/easing/easing.min.js'%}"></script>
+    <script src="{%static 'frontend/lib/waypoints/waypoints.min.js'%}"></script>
+    <script src="{%static 'frontend/lib/owlcarousel/owl.carousel.min.js'%}"></script>
+    <!-- Template Javascript -->
+    <script src="{%static 'frontend/js/main.js'%}"></script>
+
+<script>
+ // JavaScript code
+function search_data() {
+    let input = document.getElementById('searchbar').value
+    input=input.toLowerCase();
+    let x = document.getElementsByClassName('post');
+
+    for (i = 0; i < x.length; i++) {
+        if (!x[i].innerHTML.toLowerCase().includes(input)) {
+            x[i].style.display="none";
+        }
+        else {
+            x[i].style.display="list-item";
+        }
+    }
+}
+</script>

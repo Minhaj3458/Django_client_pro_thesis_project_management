@@ -1,0 +1,22 @@
+{% extends '../../../layouts/backend/app.html' %}
+
+{% block title%}
+        | teacher pdf show
+{% endblock %}
+{% block content %}
+{% load static %}
+ <!-- Start Content-->
+               <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12 mt-4">
+                               <iframe src="{{ show_pdf.pdf.url }}" title="description" height="500" width="1000"></iframe>
+                            </div>
+
+                        </div>
+                        <!-- end page title -->
+
+
+               </div>
+{% endblock %}

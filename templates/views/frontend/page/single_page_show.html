@@ -1,0 +1,95 @@
+{% extends '../../layouts/frontend/app.html' %}
+
+{% block title%}
+        | singel page details show
+{% endblock %}
+
+{% load static %}
+{% block slider %}
+  <div class="container-fluid bg-dark p-5">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h1 class="display-4 text-white">This Topic Details</h1>
+                <a href="{% url 'home' %}">Home</a>
+                <i class="far fa-square text-primary px-2"></i>
+                <a href=""> Details </a>
+            </div>
+        </div>
+  </div>
+{% endblock %}
+
+{% block content %}
+
+    <!-- Blog Start -->
+    <div class="container-fluid py-6 px-5">
+        <div class="row g-5">
+            <div class="col-lg-8">
+                <!-- Blog Detail Start -->
+                <div class="mb-5">
+                    <iframe class=" w-100 mb-5" src="{{ thesis_project.pdf.url }}" frameborder="0" width="400px"
+                                    height="400px"></iframe>
+
+                    <h1 class="mb-4">{{ thesis_project.topic_name }}</h1>
+                    <div class="row">
+                        <div class="col-md-5"> <p><span class="h5">Name :</span> {{ thesis_project.name }} </p></div>
+                        <div class="col-md-5"> <p><span class="h5">Email :</span> {{ thesis_project.email }} </p></div>
+                        <div class="col-md-5"> <p><span class="h5">Type  :</span> {{ thesis_project.type  }} </p></div>
+                        <div class="col-md-5"> <p><span class="h5">Supervisor Name  :</span> {{ thesis_project.supervisor_name }} </p></div>
+                        {% if thesis_project.thesis_type %}
+                        <div class="col-md-5"> <p><span class="h5">Thesis Type  :</span> {{ thesis_project.thesis_type.thesis_type }} </p> </div>
+                        {% else %}
+                         <div class="col-md-5"> <p><span class="h5">Project Type  :</span> {{ thesis_project.project_type }} </p> </div>
+                        {% endif %}
+                        {% if thesis_project.student_id %}
+                        <div class="col-md-5"> <p><span class="h5">Student Id  :</span> {{ thesis_project.student_id }} </p> </div>
+                        {% else %}
+                         <div class="col-md-5"> <p><span class="h5">Teacher Id  :</span> {{ thesis_project.teacher_id  }} </p> </div>
+                        {% endif %}
+                        <div class="col-md-5"> <p><span class="h5">Department :</span> {{ thesis_project.department.department_name }} </p></div>
+                        <div class="col-md-5"> <p><span class="h5">Batch  :</span> {{ thesis_project.batch  }} </p></div>
+                    </div>
+                    <p>{{ thesis_project.description  }}</p>
+
+                </div>
+                <!-- Blog Detail End -->
+
+
+            </div>
+
+            <!-- Sidebar Start -->
+            <div class="col-lg-4">
+
+                <!-- Category Start -->
+                <div class="mb-5">
+                    <h2 class="mb-4">Department</h2>
+                    <div class="d-flex flex-column justify-content-start bg-secondary p-4">
+                        {% if department %}
+                           {% for show in department %}
+                            <a class="h5 mb-3" href="{% url 'department' id=show.id %}"><i class="bi bi-arrow-right text-primary me-2"></i>{{ show.department_name }}</a>
+                          {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+                <!-- Category End -->
+
+                <!-- Recent Post Start -->
+                <div class="mb-5">
+                    <h2 class="mb-4">Recent Paper</h2>
+                    {% if  thesis_project_latest %}
+                       {% for show in thesis_project_latest %}
+                      <div class="d-flex mb-3">
+                        <a href="{% url 'single_page' id=show.id %}" class="h5 d-flex align-items-center bg-secondary px-3 mb-0"> {{ show.topic_name }}
+                        </a>
+                          <h6>{{ show.created_at|date:"M d, Y" }}</h6>
+                      </div>
+                     {% endfor %}
+                    {% endif %}
+                </div>
+                <!-- Recent Post End -->
+
+            </div>
+            <!-- Sidebar End -->
+        </div>
+    </div>
+    <!-- Blog End -->
+{% endblock %}

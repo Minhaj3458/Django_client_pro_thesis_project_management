@@ -1,0 +1,261 @@
+  {% load static %}
+<div class="leftside-menu">
+
+                <!-- LOGO -->
+                <a href="{% url 'home' %}" class="logo text-center logo-light">
+                    <div class="h3 text-white">Thesis/Project</div>
+                </a>
+
+                <!-- LOGO -->
+
+
+                <div class="h-100" id="leftside-menu-container" data-simplebar="">
+
+                    {%if user.is_superuser == True %}
+                    <!--- Sidemenu -->
+                    <ul class="side-nav">
+
+                        <li class="side-nav-title side-nav-item">Navigation</li>
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                                <i class="uil-home-alt"></i>
+                                <span class="badge bg-success float-end"></span>
+                                <span> Dashboards </span>
+                            </a>
+                            <div class="collapse" id="sidebarDashboards">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{% url 'admin_home' %}">Home</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="side-nav-title side-nav-item">Authentication</li>
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebarEcommerce1" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                                <i class="uil-store"></i>
+                                <span> Authentication </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebarEcommerce1">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{% url 'user_manage' %}">Manage User</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'admin_reg' %}">Admin Registration</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebar1" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                                <i class="uil-store"></i>
+                                <span> Admin Profile </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebar1">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{% url 'create_admin_profile' %}">Create Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'manage_admin_profile' %}">Manage Profile</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="side-nav-title side-nav-item">COMPONENTS</li>
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebar1" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                                <i class="uil-package"></i>
+                                <span> Thesis Type </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebar1">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{% url 'admin_create_thesis_type' %}">Create Thesis Type</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'admin_manage_thesis_type' %}">Manage Thesis Type</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                         <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebar1" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                                <i class="uil-package"></i>
+                                <span> Project Type </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebar1">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{% url 'admin_create_project_type' %}">Create Project Type</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'admin_manage_project_type' %}">Manage Project Type</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                         <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebar1" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                                <i class="uil-package"></i>
+                                <span> Department </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebar1">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{% url 'admin_create_department' %}">Create Department</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'admin_manage_department' %}">Manage Department</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                       <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebar1" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                                <i class="uil-package"></i>
+                                <span> Thesis_project </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebar1">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{% url 'create_admin_thesis_project' %}">Create Thesis project</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'manage_admin_thesis_project' %}">Manage Thesis project</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                     <!---- this sidemenu use student -->
+                     {% elif user.is_student == True %}
+                     <!--- Sidemenu -->
+                    <ul class="side-nav">
+
+                        <li class="side-nav-title side-nav-item">Navigation</li>
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#student_sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                                <i class="uil-home-alt"></i>
+                                <span class="badge bg-success float-end"></span>
+                                <span> Profile </span>
+                            </a>
+                            <div class="collapse" id="student_sidebarDashboards">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{% url 'stu_profile_show' %}">Show Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'manage_student' %}">Manage Profile</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="side-nav-title side-nav-item">COMPONENTS</li>
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebar" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                                <i class="uil-package"></i>
+                                <span> Thesis_Project </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebar">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{% url 'create_student_thesis_project' %}">Create Thesis_project</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'manage_student_thesis_project' %}">Manage Thesis_project</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                      <!---- this sidemenu use student -->
+                     {% elif user.is_teacher == True %}
+                     <!--- Sidemenu -->
+                    <ul class="side-nav">
+
+                        <li class="side-nav-title side-nav-item">Navigation</li>
+
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#student_sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                                <i class="uil-home-alt"></i>
+                                <span class="badge bg-success float-end"></span>
+                                <span> Profile </span>
+                            </a>
+                            <div class="collapse" id="student_sidebarDashboards">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{% url 'teacher_profile' %}">Show Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'manage_teacher_profile' %}">Manage Profile</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#student_sidebarDashboards" aria-expanded="false" aria-controls="sidebarDashboards" class="side-nav-link">
+                                <i class="uil-home-alt"></i>
+                                <span class="badge bg-success float-end"></span>
+                                <span> Student Manage </span>
+                            </a>
+                            <div class="collapse" id="student_sidebarDashboards">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{% url 'teacher_manage_student' %}">Manage Student</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="side-nav-title side-nav-item">COMPONENTS</li>
+                        <li class="side-nav-item">
+                            <a data-bs-toggle="collapse" href="#sidebar" aria-expanded="false" aria-controls="sidebarEcommerce" class="side-nav-link">
+                                <i class="uil-package"></i>
+                                <span> Thesis_Project </span>
+                                <span class="menu-arrow"></span>
+                            </a>
+                            <div class="collapse" id="sidebar">
+                                <ul class="side-nav-second-level">
+                                    <li>
+                                        <a href="{% url 'create_teacher_thesis_project' %}">Create Thesis_project</a>
+                                    </li>
+                                    <li>
+                                        <a href="{% url 'manage_teacher_thesis_project' %}">Manage Thesis_project</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+
+                      {% endif %}
+                    <!-- End Sidebar -->
+
+
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>

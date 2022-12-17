@@ -1,0 +1,106 @@
+{% extends '../../layouts/backend/app.html' %}
+
+{% block title%}
+        |admin home page
+{% endblock %}
+{% block content %}
+   <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="{% url 'show_admin_profile' %}">Profile</a></li>
+                                            <li class="breadcrumb-item active">Home</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">Home</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-lg-6 col-xl-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-6">
+                                                <h5 class="text-muted fw-normal mt-0 text-truncate" title="Campaign Sent">Total Thesis</h5>
+                                                <h3 class="my-2 py-1">{{count_thesis}}</h3>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="text-end">
+                                                    <div id="campaign-sent-chart" data-colors="#727cf5"></div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end row-->
+                                    </div> <!-- end card-body -->
+                                </div> <!-- end card -->
+                            </div> <!-- end col -->
+
+                            <div class="col-lg-6 col-xl-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-6">
+                                                <h5 class="text-muted fw-normal mt-0 text-truncate" title="New Leads">Total Project</h5>
+                                                <h3 class="my-2 py-1">{{ count_project }}</h3>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="text-end">
+                                                    <div id="new-leads-chart" data-colors="#0acf97"></div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end row-->
+                                    </div> <!-- end card-body -->
+                                </div> <!-- end card -->
+                            </div> <!-- end col -->
+
+                            <div class="col-lg-6 col-xl-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-6">
+                                                <h5 class="text-muted fw-normal mt-0 text-truncate" title="Deals">Total User</h5>
+                                                <h3 class="my-2 py-1">{{ count_user }}</h3>
+
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="text-end">
+                                                    <div id="deals-chart" data-colors="#727cf5"></div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end row-->
+                                    </div> <!-- end card-body -->
+                                </div> <!-- end card -->
+                            </div> <!-- end col -->
+
+                            <div class="col-lg-6 col-xl-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="row align-items-center">
+                                            <div class="col-6">
+                                                <h5 class="text-muted fw-normal mt-0 text-truncate" title="Booked Revenue">Viewer</h5>
+                                                <h3 class="my-2 py-1">O</h3>
+                                            </div>
+                                            <div class="col-6">
+                                                <div class="text-end">
+                                                    <div id="booked-revenue-chart" data-colors="#0acf97"></div>
+                                                </div>
+                                            </div>
+                                        </div> <!-- end row-->
+                                    </div> <!-- end card-body -->
+                                </div> <!-- end card -->
+                            </div> <!-- end col -->
+                        </div>
+                        <!-- end row -->
+
+
+                        <!-- end row-->
+
+
+                    </div>
+{% endblock %}

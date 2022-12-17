@@ -1,0 +1,90 @@
+{% extends '../../../layouts/backend/app.html' %}
+
+{% block title%}
+        | Create Admin Department
+{% endblock %}
+{% block content %}
+    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="{% url 'admin_manage_department' %}">Manage Department</a></li>
+                                            <li class="breadcrumb-item active">Create Department</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">Create Department</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-8">
+                                <div class="card">
+                                    <div class="card-body  text-white">
+                                        {% if messages %}
+                                          {% for message in messages %}
+                                          <div class="alert alert-{{message.tags}} alert-dismissible  bg-{{message.tags}} text-white border-0 fade show" role="alert">
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            <strong>{{message}}</strong>
+                                          </div>
+                                          {% endfor %}
+                                        {% endif %}
+                                        <h4 class="header-title mb-3">Create Department</h4>
+
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="input-types-preview">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <form  action="" class="form-horizontal"  enctype="multipart/form-data" method="POST">
+                                                             {% csrf_token %}
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="row mb-3 mt-3">
+                                                                        <label class="col-md-3 col-form-label" for="department_name">Department Name </label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="department_name" name="department_name"  placeholder="Department Name"  required>
+                                                                            {% if department_name_error  %}
+                                                                                  <strong class="text-danger h6">{{department_name_error}}</strong>
+                                                                             {% endif %}
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div> <!-- end col -->
+                                                                  <div class="col-12">
+                                                                      <div class="row ">
+                                                                        <div class="col-md-12">
+                                                                           <button type="submit"  class="btn-lg btn-outline-success btn-rounded h3 "><i class="uil-cloud-computing"></i> Create </button>
+                                                                        </div>
+                                                                      </div>
+                                                                  </div>
+
+                                                            </div> <!-- end row -->
+
+                                                        </form>
+                                                    </div> <!-- end col -->
+
+
+                                                </div>
+                                                <!-- end row-->
+                                            </div> <!-- end preview-->
+
+                                        </div> <!-- end tab-content-->
+                                    </div> <!-- end card-body -->
+                                </div> <!-- end card -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+
+
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+{% endblock %}

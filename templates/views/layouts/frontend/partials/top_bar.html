@@ -1,0 +1,36 @@
+ <!-- Topbar Start -->
+    <div class="container-fluid bg-secondary ps-5 pe-0  d-lg-block">
+        <div class="row gx-0">
+            <div class="col-md-6 text-center text-lg-start mb-2 mb-lg-0">
+                <div class="d-inline-flex align-items-center">
+                    <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><small>Login</small></a>
+                        <div class="dropdown-menu m-0">
+                                <a href="{% url 'admin_login' %}" class="dropdown-item">Admin</a>
+                                <a href="{% url 'teacher_login' %}" class="dropdown-item">Teacher</a>
+                                <a href="{% url 'student_login' %}" class="dropdown-item">Student</a>
+                        </div>
+                     </div>
+                     <div class="nav-item dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><small>Registration</small></a>
+                        <div class="dropdown-menu m-0">
+                                <a href="{% url 'teacher_reg' %}" class="dropdown-item">Teacher Registration</a>
+                                <a href="{% url 'student_reg' %}" class="dropdown-item">Student Registration</a>
+                        </div>
+                     </div>
+
+                </div>
+            </div>
+            <div class="col-md-6 d-none text-center text-lg-end d-lg-block">
+                <div class="position-relative d-inline-flex align-items-center bg-primary text-white top-shape px-5">
+                    <div class="me-3 pe-3 border-end py-2">
+                        <p class="m-0"><i class="fa fa-envelope-open me-2"></i>mdminhajur555@gmail.com</p>
+                    </div>
+                    <div class="py-2">
+                        <p class="m-0"><i class="fa fa-phone-alt me-2"></i>+01862993458</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Topbar End -->

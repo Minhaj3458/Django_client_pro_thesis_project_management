@@ -1,0 +1,116 @@
+{% extends '../../layouts/backend/app.html' %}
+
+{% block title%}
+        | manage user
+{% endblock %}
+{% block content %}
+ <!-- Start Content-->
+               <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="{% url 'admin_reg' %}">Create Admin</a></li>
+                                            <li class="breadcrumb-item active">Manage User</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">Manage User</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                    {% if messages %}
+                                          {% for message in messages %}
+                                          <div class="alert alert-{{message.tags}} alert-dismissible  bg-{{message.tags}} text-white border-0 fade show" role="alert">
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            <strong>{{message}}</strong>
+                                          </div>
+                                          {% endfor %}
+                                    {% endif %}
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title">Manage User</h4>
+                                        <p class="text-muted font-14">
+
+                                        </p>
+
+
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="scroll-horizontal-preview">
+                                                <table id="scroll-horizontal-datatable" class="table table-bordered border-success table-dark nowrap dt-responsive  w-100">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>User Name</th>
+                                                            <th>Email</th>
+                                                            <th>Full Name</th>
+                                                            <th>Position</th>
+                                                            <th>Status</th>
+                                                            <th>Status Action</th>
+                                                            <th>Student Id</th>
+                                                            <th>Teacher Id</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                      {% if users %}
+                                                        {% for show in users %}
+
+                                                        <tr>
+                                                            <td>{{ forloop.counter }}</td>
+                                                            <td>{{ show.username }}</td>
+                                                            <td>{{ show.email }}</td>
+                                                            <td>{{ show.first_name }} {{ show.last_name }}</td>
+                                                            {% if show.is_superuser == 1 %}
+                                                               <td>Admin</td>
+                                                            {% elif show.is_student == 1%}
+                                                               <td>Student</td>
+                                                            {% elif show.is_teacher == 1%}
+                                                               <td>Teacher</td>
+                                                            {% else %}
+                                                               <td></td>
+                                                            {% endif %}
+                                                            {% if show.is_active == 1 %}
+                                                                <td class="text-success"> Active  </td>
+                                                            {% else %}
+                                                                 <td class="text-danger"> Deactive  </td>
+                                                            {% endif %}
+
+                                                            {% if show.is_active == 1 %}
+                                                                 <td class=""><a href="{% url 'user_status' id=show.id %}" class="btn btn-danger btn-sm">Deactive </a></td>
+
+                                                            {% else %}
+                                                                 <td class=""><a href="{% url 'user_status' id=show.id %}" class="btn btn-success btn-sm">Active</a> </td>
+                                                              {% endif %}
+                                                            <td>{{ show.student_id }}</td>
+                                                            <td>{{ show.teacher_id }}</td>
+                                                            <td>
+                                                                  {% if show.auth_profile_customer %}
+                                                                   <a href="{% url 'update_admin_profile' id=show.auth_profile_customer.id %}"  class="text-info h2"><i class="mdi mdi-pencil"></i></a>
+                                                                  {% endif %}
+                                                                  <a href="{% url 'user_delete' id=show.id %}" class="text-danger ml-3  h2" ><i class="mdi mdi-delete"></i></a>
+                                                            </td>
+                                                         </tr>
+                                                        {% endfor %}
+                                                    {% endif %}
+
+                                                    </tbody>
+                                                </table>
+                                            </div> <!-- end preview-->
+
+                                        </div> <!-- end tab-content-->
+
+                                    </div> <!-- end card body-->
+                                </div> <!-- end card -->
+                            </div><!-- end col-->
+                        </div>
+                        <!-- end row-->
+               </div>
+{% endblock %}

@@ -1,0 +1,129 @@
+{% extends '../../../layouts/backend/app.html' %}
+
+{% block title%}
+        | admin manage thesis project
+{% endblock %}
+{% block content %}
+ <!-- Start Content-->
+               <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="{% url 'create_admin_thesis_project' %}">Create Thesis Project</a></li>
+                                            <li class="breadcrumb-item active">Manage Thesis Project</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">Manage Thesis Project</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                    {% if messages %}
+                                          {% for message in messages %}
+                                          <div class="alert alert-{{message.tags}} alert-dismissible  bg-{{message.tags}} text-white border-0 fade show" role="alert">
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            <strong>{{message}}</strong>
+                                          </div>
+                                          {% endfor %}
+                                    {% endif %}
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title">Manage Thesis Project</h4>
+                                        <p class="text-muted font-14">
+
+                                        </p>
+
+
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="scroll-horizontal-preview">
+                                                <table id="scroll-horizontal-datatable" class="table table-bordered border-success table-dark nowrap dt-responsive  w-100">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>User Name</th>
+                                                            <th>Full Name</th>
+                                                            <th>Type</th>
+                                                            <th>Thesis Type</th>
+                                                            <th>Project Type</th>
+                                                            <th>Topic Name</th>
+                                                            <th>PDF</th>
+                                                            <th>Student Id</th>
+                                                            <th>Teacher Id</th>
+                                                            <th>Status</th>
+                                                            <th>Status Action</th>
+                                                            <th>Supervisor_name</th>
+                                                            <th>Department</th>
+                                                            <th>Batch</th>
+                                                            <th>Phone</th>
+                                                            <th>Email</th>
+                                                            <th>Submit By</th>
+                                                            <th>Description</th>
+                                                            <th>Published Date</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                      {% if thesis_project %}
+                                                        {% for show in thesis_project %}
+
+                                                        <tr>
+                                                            <td>{{ forloop.counter }}</td>
+                                                            <td>{{ show.user.username }}</td>
+                                                            <td>{{ show.name }}</td>
+                                                            <td>{{ show.type }}</td>
+                                                            <td>{{ show.thesis_type.thesis_type }}</td>
+                                                            <td>{{ show.project_type.project_type }}</td>
+                                                            <td>{{ show.topic_name }}</td>
+                                                            <td><a href="{% url 'pdf_show_admin' id=show.id %}" class="btn btn-success btn-sm">Show</a>
+                                                                </td>
+                                                            <td>{{ show.student_id }}</td>
+                                                            <td>{{ show.teacher_id }}</td>
+                                                            {% if show.status == True %}
+                                                                <td class="text-success"><p class="text-success">Approved </p>  </td>
+                                                            {% else %}
+                                                                 <td class="text-danger"><p class="text-danger">Unapproved</p> </td>
+                                                            {% endif %}
+
+                                                            {% if show.status == True %}
+                                                                 <td class=""><a href="{% url 'admin_thesis_project_status' id=show.id %}" class="btn btn-danger btn-sm">Unapproved</a></td>
+
+                                                            {% else %}
+                                                                 <td class=""><a href="{% url 'admin_thesis_project_status' id=show.id %}" class="btn btn-success btn-sm">Approved</a> </td>
+                                                            {% endif %}
+                                                            <td>{{ show.supervisor_name }}</td>
+                                                            <td>{{ show.department.department_name }}</td>
+                                                            <td>{{ show.batch }}</td>
+                                                            <td>{{ show.phone }}</td>
+                                                            <td>{{ show.email }}</td>
+                                                            <td>{{ show.submit_by }}</td>
+                                                            <td>{{ show.description|slice:100  }}</td>
+                                                            <td>{{ show.created_at|date:"M d, Y" }}</td>
+                                                            <td>
+                                                                   <a href="{% url 'admin_thesis_project_update' id=show.id %}"  class="text-info h2"><i class="mdi mdi-pencil"></i></a>
+                                                                   <a href="{% url 'admin_thesis_project_delete' id=show.id %}" class="text-danger ml-3  h2" ><i class="mdi mdi-delete"></i></a>
+                                                            </td>
+                                                         </tr>
+                                                        {% endfor %}
+                                                    {% endif %}
+
+                                                    </tbody>
+                                                </table>
+                                            </div> <!-- end preview-->
+
+                                        </div> <!-- end tab-content-->
+
+                                    </div> <!-- end card body-->
+                                </div> <!-- end card -->
+                            </div><!-- end col-->
+                        </div>
+                        <!-- end row-->
+               </div>
+{% endblock %}

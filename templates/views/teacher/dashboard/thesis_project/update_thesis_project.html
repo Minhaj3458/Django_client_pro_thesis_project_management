@@ -1,0 +1,204 @@
+{% extends '../../../layouts/backend/app.html' %}
+
+{% block title%}
+        | teacher update thesis project
+{% endblock %}
+{% block content %}
+    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="{% url 'manage_teacher_thesis_project' %}">Manage Thesis Project</a></li>
+                                            <li class="breadcrumb-item active">Update Thesis Project</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">Update Thesis Project</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+<!--                            <div class="col-1"></div>-->
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+<!--                                        {% if messages %}-->
+<!--                                          {% for message in messages %}-->
+<!--                                          <div class="alert alert-{{message.tags}} alert-dismissible  bg-{{message.tags}} text-white border-0 fade show" role="alert">-->
+<!--                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>-->
+<!--                                            <strong>{{message}}</strong>-->
+<!--                                          </div>-->
+<!--                                          {% endfor %}-->
+<!--                                        {% endif %}-->
+                                        <h4 class="header-title mb-3">Update Thesis Project</h4>
+
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="input-types-preview">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <form  action="" class="form-horizontal"  enctype="multipart/form-data" method="POST">
+                                                             {% csrf_token %}
+                                                            <div class="row">
+                                                                <div class="col-6">
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="name">Full name</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="name" name="name" value="{{data.name}}" placeholder="full name" required>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="type">Type</label>
+                                                                        <div class="col-md-9">
+                                                                             <select class="form-control select2" id="type" name="type" data-toggle="select2" required>
+                                                                                    <option value="{{data.type}}" {% if data.type %} selected {% endif %}>{{data.type}}</option>
+                                                                                    <option value="thesis">Thesis</option>
+                                                                                    <option value="project">Project</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                      {% if data.type == "thesis" %}
+                                                                     <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="thesis_type">Thesis Type</label>
+                                                                        <div class="col-md-9">
+                                                                            <select class="form-control select2" id="thesis_type" name="thesis_type" data-toggle="select2" >
+                                                                                     <option value="" ></option>
+                                                                                     {% for show in thesis_type %}
+                                                                                           <option value="{{ show.id }}"{% if data.thesis_type.id == show.id %} selected {% endif %}>{{ show.thesis_type }}</option>
+                                                                                     {% endfor %}
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    {% else %}
+                                                                       <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="project_type">Project Type</label>
+                                                                        <div class="col-md-9" >
+                                                                            <select class="form-control select2" id="project_type" name="project_type" data-toggle="select2" >
+                                                                                     <option value="" ></option>
+                                                                                     {% for show in project_type %}
+                                                                                           <option value="{{ show.id }}" {% if data.project_type.id == show.id %} selected {% endif %}>{{ show.project_type }}</option>
+                                                                                     {% endfor %}
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    {% endif %}
+
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="topic_name">Topic Name </label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="topic_name" name="topic_name" value="{{data.topic_name}}"   placeholder="Topic Name" required>
+                                                                        </div>
+                                                                    </div>
+                                                                   <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="student_id">Student ID</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="student_id" name="student_id" value="{{data.student_id}}"   placeholder="Student Id" >
+                                                                        </div>
+                                                                    </div>
+                                                                     <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="teacher_id">Teacher ID</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="teacher_id" name="teacher_id" value="{{data.teacher_id}}"  placeholder="Teacher Id" >
+                                                                        </div>
+                                                                    </div>
+                                                                     <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="supervisor_name">Supervisor </label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="supervisor_name" name="supervisor_name" value="{{data.supervisor_name}}"   placeholder="Supervisor Name" >
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                </div> <!-- end col -->
+                                                                  <div class="col-6">
+                                                                      <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="batch">Batch</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" id="simplemde1" class="form-control" id="batch" name="batch" maxlength="200" value="{{data.batch}}"  placeholder="batch" >
+                                                                        </div>
+                                                                    </div>
+                                                                   <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="department">Department</label>
+                                                                        <div class="col-md-9">
+                                                                             <select class="form-control select2" id="department" name="department" data-toggle="select2" required>
+                                                                                     {% for show in department %}
+                                                                                           <option value="{{ show.id }}" {% if data.department.id == show.id %} selected {% endif %}>{{ show.department_name }}</option>
+                                                                                     {% endfor %}
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="submit_by">Submit By</label>
+                                                                        <div class="col-md-9">
+                                                                             <select class="form-control select2" id="submit_by" name="submit_by" data-toggle="select2" required>
+                                                                                   <option value="{{data.submit_by}}" selected>{{data.submit_by}}</option>
+                                                                                    <option value="student">Student</option>
+                                                                                    <option value="teacher">Teacher</option>
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                   <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="phone">Phone</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="phone" name="phone" value="{{data.phone}}"   placeholder="phone" required>
+                                                                        </div>
+                                                                    </div>
+                                                                      <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="email">Email</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="email" class="form-control" id="email" name="email" value="{{data.email}}"  placeholder="email" required>
+                                                                        </div>
+                                                                     </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="pdf">PDF</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="file" class="form-control" id="pdf" name="pdf" accept="application/pdf"  >
+                                                                        </div>
+                                                                    </div>
+
+                                                                      <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label">Description</label>
+                                                                        <div class="col-md-9">
+                                                                             <textarea class="form-control" id="description" name="description" maxlength="500"  required>{{data.description}}</textarea>
+                                                                        </div>
+                                                                     </div>
+
+
+                                                                </div> <!-- end col -->
+                                                                  <div class="col-6">
+                                                                      <div class="row ">
+                                                                        <div class="col-md-12">
+                                                                           <button type="submit"  class="btn-lg btn-outline-success btn-rounded h3 "><i class="uil-cloud-computing"></i> Update </button>
+                                                                        </div>
+                                                                      </div>
+                                                                  </div>
+
+                                                            </div> <!-- end row -->
+
+                                                        </form>
+                                                    </div> <!-- end col -->
+
+
+                                                </div>
+                                                <!-- end row-->
+                                            </div> <!-- end preview-->
+
+                                        </div> <!-- end tab-content-->
+                                    </div> <!-- end card-body -->
+                                </div> <!-- end card -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+
+
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+{% endblock %}

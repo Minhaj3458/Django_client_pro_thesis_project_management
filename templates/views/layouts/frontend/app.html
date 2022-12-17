@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>{% block title %}  {% endblock %}</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content=" " name="description">
+
+     {% load static %}
+
+     {% include './partials/css.html' %}
+     {% block css %}
+      {% endblock %}
+
+
+</head>
+
+
+
+   {% include './partials/top_bar.html' %}
+
+    <!-- Navbar Start -->
+  {% include './partials/navbar.html' %}
+    <!-- Navbar End -->
+
+
+    <!-- Carousel Start -->
+    {% block slider %}
+      {% endblock %}
+    <!-- Carousel End -->
+
+
+     {% block content %}
+      {% endblock %}
+
+    <!-- Footer Start -->
+    {% include './partials/footer.html' %}
+    <!-- Footer End -->
+
+
+    <!-- Back to Top -->
+    <a href="#" class="btn btn-lg btn-primary btn-lg-square rounded-circle back-to-top"><i class="bi bi-arrow-up"></i></a>
+
+ {% include './partials/js.html' %}
+
+
+</body>
+
+</html>

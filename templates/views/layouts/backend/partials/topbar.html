@@ -1,0 +1,80 @@
+ {% load static %}
+<div class="navbar-custom">
+
+                        <ul class="list-unstyled topbar-menu float-end mb-0">
+                            <li class="dropdown notification-list">
+                                <a class="nav-link dropdown-toggle nav-user arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+
+                                    <span class="account-user-avatar">
+                                        {% if user.auth_profile_customer.image %}
+                                        <img src="{{ user.auth_profile_customer.image }}" alt="user-image" class="rounded-circle">
+                                        {% elif user.Student_profile.image %}
+                                        <img src="{{ user.Student_profile.image }}" alt="user-image" class="rounded-circle">
+                                        {% elif user.Teacher_profile.image %}
+                                        <img src="{{ user.Teacher_profile.image }}" alt="user-image" class="rounded-circle">
+                                        {% else %}
+                                         <img src="#" alt="image" class="rounded-circle">
+                                        {% endif %}
+                                    </span>
+                                    <span>
+                                        <span class="account-user-name">{{ user.username }}</span>
+                                        {% if user.is_superuser == True %}
+                                             <span class="account-position">Author</span>
+                                        {% elif user.is_student == True%}
+                                             <span class="account-position">Student</span>
+                                        {% elif user.is_teacher == True%}
+                                             <span class="account-position">Teacher</span>
+                                        {% endif %}
+
+                                    </span>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-end dropdown-menu-animated topbar-dropdown-menu profile-dropdown">
+                                    <!-- item-->
+                                    <div class=" dropdown-header noti-title">
+                                        <h6 class="text-overflow m-0">Welcome !</h6>
+                                    </div>
+
+                                    <!-- item-->
+                                    {% if user.is_superuser == True %}
+                                        <a href="{% url 'show_admin_profile' %}" class="dropdown-item notify-item">
+                                            <i class="mdi mdi-account-circle me-1"></i>
+                                            <span>My Account</span>
+                                        </a>
+                                    {% elif user.is_student == True%}
+                                       <a href="{% url 'stu_profile_show' %}" class="dropdown-item notify-item">
+                                            <i class="mdi mdi-account-circle me-1"></i>
+                                            <span>My Account</span>
+                                        </a>
+                                    {% elif user.is_teacher == True%}
+                                       <a href="{% url 'teacher_profile' %}" class="dropdown-item notify-item">
+                                            <i class="mdi mdi-account-circle me-1"></i>
+                                            <span>My Account</span>
+                                        </a>
+                                     {% endif %}
+                                    <!-- item-->
+                                     {% if user.is_superuser == True %}
+                                              <a href="{% url 'admin_logout' %}" class="dropdown-item notify-item">
+                                                <i class="mdi mdi-logout me-1"></i>
+                                                <span>Logout</span>
+                                             </a>
+                                        {% elif user.is_student == True %}
+                                             <a href="{% url 'student_logout' %}" class="dropdown-item notify-item">
+                                                <i class="mdi mdi-logout me-1"></i>
+                                                <span>Logout</span>
+                                             </a>
+                                        {% elif user.is_teacher == True %}
+                                             <a href="{% url 'teacher_logout' %}" class="dropdown-item notify-item">
+                                                <i class="mdi mdi-logout me-1"></i>
+                                                <span>Logout</span>
+                                             </a>
+                                    {% endif %}
+
+                                </div>
+                            </li>
+
+                        </ul>
+                        <button class="button-menu-mobile open-left">
+                            <i class="mdi mdi-menu"></i>
+                        </button>
+
+                    </div>

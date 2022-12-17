@@ -1,0 +1,208 @@
+{% extends '../../layouts/backend/app.html' %}
+
+{% block title%}
+        | teacher profile
+{% endblock %}
+{% block content %}
+<div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="{% url 'manage_teacher_profile' %}">Manage Profile</a></li>
+                                            <li class="breadcrumb-item active">Profile</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">Profile</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <!-- Profile -->
+                                <div class="card bg-primary">
+                                    <div class="card-body profile-user-box">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <div class="row align-items-center">
+                                                    <div class="col-auto">
+                                                        {% if teacher_profile.Teacher_profile %}
+                                                          <div class="avatar-lg">
+                                                              <img src="{{ teacher_profile.Teacher_profile.image }}" width="70px" height="80px" alt="" class="rounded-circle img-thumbnail">
+                                                          </div>
+                                                        {% else %}
+                                                          <div class="avatar-lg">
+                                                              <img src="" width="70px" height="80px" alt="" class="rounded-circle img-thumbnail">
+                                                          </div>
+                                                        {% endif %}
+
+                                                    </div>
+
+                                                    <div class="col">
+                                                        <div>
+                                                            <h4 class="mt-1 mb-1 text-white">{{ request.session.username }} </h4>
+                                                            <p class="font-13 text-white-50"> Teacher  </p>
+
+                                                            <ul class="mb-0 list-inline text-light">
+                                                                <li class="list-inline-item me-3">
+                                                                    <h5 class="mb-1">{{ count_thesis }}</h5>
+                                                                    <p class="mb-0 font-13 text-white-50">Total Thesis</p>
+                                                                </li>
+                                                                <li class="list-inline-item">
+                                                                    <h5 class="mb-1">{{ count_project }}</h5>
+                                                                    <p class="mb-0 font-13 text-white-50">Total Project</p>
+                                                                </li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div> <!-- end col-->
+
+                                            <div class="col-sm-4">
+                                                <div class="text-center mt-sm-0 mt-3 text-sm-end">
+                                                    <a href="{% url 'update_teacher_profile' id=teacher_profile.id%}" class="btn btn-light">
+                                                        <i class="mdi mdi-account-edit me-1"></i> Edit Profile
+                                                    </a>
+                                                </div>
+                                            </div> <!-- end col-->
+                                        </div> <!-- end row -->
+
+                                    </div> <!-- end card-body/ profile-user-box-->
+                                </div><!--end profile/ card -->
+                            </div> <!-- end col-->
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
+
+                            <div class="col-xl-5">
+                                <!-- Personal-Information -->
+                               {% if teacher_profile.Teacher_profile %}
+                                   <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-3">About</h4>
+                                        <p class="text-muted font-13">
+                                            {{teacher_profile.Teacher_profile.about }}
+                                        </p>
+                                        <hr>
+                                        <div class="text-start">
+                                            <p class="text-muted"><strong>Full Name :</strong> <span class="ms-2">{{ teacher_profile.first_name }} {{ teacher_profile.last_name }}</span></p>
+
+                                            <p class="text-muted"><strong>Mobile :</strong><span class="ms-2">{{ teacher_profile.Teacher_profile.phone  }}</span></p>
+                                            <p class="text-muted"><strong>Email :</strong> <span class="ms-2">{{ teacher_profile.email }}</span></p>
+                                            <p class="text-muted"><strong>Teacher Id :</strong> <span class="ms-2">{{ teacher_profile.teacher_id }}</span></p>
+                                            <p class="text-muted"><strong>Department :</strong> <span class="ms-2">{{ teacher_profile.Teacher_profile.department }}</span></p>
+                                            <p class="text-muted"><strong>Location :</strong> <span class="ms-2">{{ teacher_profile.Teacher_profile.address }}</span></p>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                               {% else %}
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title mt-0 mb-3">About</h4>
+                                        <p class="text-muted font-13">
+
+                                        </p>
+                                        <hr>
+                                        <div class="text-start">
+                                            <p class="text-muted"><strong>Full Name :</strong> <span class="ms-2"></span></p>
+                                            <p class="text-muted"><strong>Mobile :</strong><span class="ms-2"></span></p>
+                                            <p class="text-muted"><strong>Teacher ID :</strong><span class="ms-2"></span></p>
+                                             <p class="text-muted"><strong>Department :</strong><span class="ms-2"></span></p>
+                                            <p class="text-muted"><strong>Location :</strong> <span class="ms-2"></span></p>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endif %}
+                                <!-- Personal-Information -->
+
+
+
+
+                            </div> <!-- end col-->
+
+                            <div class="col-xl-7">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title mb-3">My Thesis/Project</h4>
+
+                                        <div class="table-responsive">
+                                             <div class="tab-content">
+                                            <div class="tab-pane show active" id="scroll-horizontal-preview">
+                                               <table class="table table-bordered border-primary table-centered mb-0">
+                                                <thead>
+                                                    <tr>
+                                                       <th>Id</th>
+                                                        <th>User Name</th>
+                                                        <th>Full Name</th>
+                                                        <th>Type</th>
+                                                        <th>Topic Name</th>
+                                                        <th>PDF</th>
+                                                        <th>Status</th>
+                                                        <th>Teacher Id</th>
+                                                        <th>Supervisor_name</th>
+                                                        <th>Department</th>
+                                                        <th>Phone</th>
+                                                        <th>Email</th>
+                                                        <th>Submit By</th>
+                                                        <th>Description</th>
+                                                        <th>Published Date</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    {% if thesis_project %}
+                                                        {% for show in thesis_project %}
+
+                                                        <tr>
+                                                            <td>{{ forloop.counter }}</td>
+                                                            <td>{{ show.user.username }}</td>
+                                                            <td>{{ show.name }}</td>
+                                                            <td>{{ show.type }}</td>
+                                                            <td>{{ show.topic_name }}</td>
+                                                            <td><a href="{% url 'pdf_show_student' id=show.id %}" class="btn btn-success btn-sm">Show</a>
+                                                                </td>
+                                                            {% if show.status == True %}
+                                                                <td class="text-success"><p class="text-success">Approved </p>  </td>
+                                                            {% else %}
+                                                                 <td class="text-danger"><p class="text-danger">Not Approved </p> </td>
+                                                            {% endif %}
+                                                            <td>{{ show.teacher_id }}</td>
+                                                            <td>{{ show.supervisor_name }}</td>
+                                                            <td>{{ show.department }}</td>
+                                                               <td>{{ show.phone }}</td>
+                                                            <td>{{ show.email }}</td>
+                                                            <td>{{ show.submit_by }}</td>
+                                                            <td>{{ show.description|slice:100  }}</td>
+                                                            <td>{{ show.created_at|date:"M d, Y" }}</td>
+                                                         </tr>
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                </tbody>
+                                            </table>
+                                            </div> <!-- end preview-->
+
+                                        </div> <!-- end tab-content-->
+                                        </div> <!-- end table responsive-->
+                                    </div> <!-- end col-->
+                                </div> <!-- end row-->
+
+                            </div>
+                            <!-- end col -->
+
+                        </div>
+                        <!-- end row -->
+
+                    </div> <!-- container -->
+
+                </div> <!-- content --
+
+{% endblock %}

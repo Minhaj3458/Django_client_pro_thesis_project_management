@@ -1,0 +1,135 @@
+{% extends '../../../layouts/backend/app.html' %}
+
+{% block title%}
+        | Update Admin profile
+{% endblock %}
+{% block content %}
+    <!-- Start Content-->
+                    <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item"><a href="{% url 'manage_admin_profile' %}">Manage Profile</a></li>
+                                            <li class="breadcrumb-item active">Update Profile</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">Update Profile</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-8">
+                                <div class="card">
+                                    <div class="card-body ">
+                                        {% if messages %}
+                                          {% for message in messages %}
+                                          <div class="alert alert-{{message.tags}} alert-dismissible  bg-{{message.tags}} text-white border-0 fade show" role="alert">
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            <strong>{{message}}</strong>
+                                          </div>
+                                          {% endfor %}
+                                        {% endif %}
+                                        <h4 class="header-title mb-3">Update Admin Profile</h4>
+
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="input-types-preview">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <form  action="" class="form-horizontal"  enctype="multipart/form-data" method="POST">
+                                                             {% csrf_token %}
+                                                            <div class="row">
+                                                                <div class="col-12">
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="userName">User name</label>
+                                                                        <div class="col-md-9">
+                                                                            <!-- Single Select -->
+                                                                            <select class="form-control select2" id="userName" name="user" data-toggle="select2">
+                                                                                    <option value="{{ admin_pro.user.id }}" selected>{{ admin_pro.user.username }}</option>
+
+                                                                            </select>
+                                                                        </div>
+                                                                    </div>
+                                                                     <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="email">Email</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="email" name="email" value="{{ admin_pro.user.email }}" placeholder="email">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="address">Address</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="address" name="address" value="{{ admin_pro.address }}"  placeholder="address" >
+                                                                        </div>
+                                                                    </div>
+                                                                   <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="first_name">First Name</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="first_name" name="first_name" value="{{ admin_pro.user.first_name }}"  placeholder="first Name" >
+                                                                        </div>
+                                                                    </div>
+                                                                     <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="last_name"  >Last Name</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="text" class="form-control" id="last_name" name="last_name" value="{{ admin_pro.user.last_name }}"  placeholder="last Name" >
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="image">Image</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="file" class="form-control" id="image" name="image" >
+                                                                        </div>
+                                                                    </div>
+                                                                     <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="number">Phone Number</label>
+                                                                        <div class="col-md-9">
+                                                                            <input type="tel" class="form-control" id="number" name="phone" placeholder="number" value="{{ admin_pro.phone }}">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row mb-3">
+                                                                        <label class="col-md-3 col-form-label" for="about">About</label>
+                                                                        <div class="col-md-9">
+                                                                            <textarea id="simplemde1" class="form-control" id="about" name="about" maxlength="300">{{ admin_pro.about }}</textarea>
+                                                                        </div>
+                                                                    </div>
+
+
+
+                                                                </div> <!-- end col -->
+                                                                  <div class="col-12">
+                                                                      <div class="row ">
+                                                                        <div class="col-md-12">
+                                                                           <button type="submit"  class="btn-lg btn-outline-success btn-rounded h3 "><i class="uil-cloud-computing"></i> Update </button>
+                                                                        </div>
+                                                                      </div>
+                                                                  </div>
+
+                                                            </div> <!-- end row -->
+
+                                                        </form>
+                                                    </div> <!-- end col -->
+
+
+                                                </div>
+                                                <!-- end row-->
+                                            </div> <!-- end preview-->
+
+                                        </div> <!-- end tab-content-->
+                                    </div> <!-- end card-body -->
+                                </div> <!-- end card -->
+                            </div><!-- end col -->
+                        </div><!-- end row -->
+
+
+
+                    </div> <!-- container -->
+
+                </div> <!-- content -->
+
+{% endblock %}
