@@ -1,6 +1,8 @@
 from django.shortcuts import render
 from thesis_project_manage_App.models import Thesis_project_manage,Thesis_type,Project_type,Department
 from django.core.paginator import Paginator
+from auth_dashboard_App.models import Contact
+from django.contrib import messages
 import random
 # Create your views here.
 
@@ -111,4 +113,14 @@ def contact_page(request):
         'project_type': project_type,
         'department': department,
     }
+    if request.method == 'POST':
+        contact = Contact()
+        contact.name = request.POST.get('name')
+        contact.email = request.POST.get('email')
+        contact.subject = request.POST.get('subject')
+        contact.message = request.POST.get('message')
+        contact.save()
+        messages.success(request, 'Message Send Successfully!')
+    else:
+        messages.warning(request, "Message Not  Send ")
     return render(request,'views/frontend/page/contact.html',context)

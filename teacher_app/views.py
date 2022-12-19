@@ -43,7 +43,8 @@ def teacher_reg(request):
 #--------------------------- teacher login -------------------#
 def teacher_login(request):
     if request.user.is_authenticated:
-        return redirect('teacher_profile')
+        if request.user.is_teacher:
+            return redirect('teacher_profile')
     if request.method == 'POST':
         password = request.POST.get('password')
         cheack_username = request.POST.get('username')

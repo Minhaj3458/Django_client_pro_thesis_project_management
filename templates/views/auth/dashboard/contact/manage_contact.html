@@ -1,0 +1,87 @@
+{% extends '../../../layouts/backend/app.html' %}
+
+{% block title%}
+        | manage contact
+{% endblock %}
+{% block content %}
+ <!-- Start Content-->
+               <div class="container-fluid">
+
+                        <!-- start page title -->
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="page-title-box">
+                                    <div class="page-title-right">
+                                        <ol class="breadcrumb m-0">
+                                            <li class="breadcrumb-item active">Manage Contact</li>
+                                        </ol>
+                                    </div>
+                                    <h4 class="page-title">Manage Contact</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end page title -->
+
+                        <div class="row">
+                            <div class="col-12">
+                                    {% if messages %}
+                                          {% for message in messages %}
+                                          <div class="alert alert-{{message.tags}} alert-dismissible  bg-{{message.tags}} text-white border-0 fade show" role="alert">
+                                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                            <strong>{{message}}</strong>
+                                          </div>
+                                          {% endfor %}
+                                    {% endif %}
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h4 class="header-title">Manage Contact</h4>
+                                        <p class="text-muted font-14">
+
+                                        </p>
+
+
+                                        <div class="tab-content">
+                                            <div class="tab-pane show active" id="scroll-horizontal-preview">
+                                                <table id="scroll-horizontal-datatable" class="table table-bordered border-success table-dark nowrap dt-responsive  w-100">
+                                                    <thead>
+                                                        <tr>
+                                                            <th>Id</th>
+                                                            <th>Name</th>
+                                                            <th>Email</th>
+                                                            <th>Subject</th>
+                                                            <th>Message</th>
+                                                            <th>Action</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+
+                                                      {% if contact %}
+                                                        {% for show in contact %}
+
+                                                        <tr>
+                                                            <td>{{ forloop.counter }}</td>
+                                                            <td>{{ show.name }}</td>
+                                                            <td>{{ show.email }}</td>
+                                                            <td>{{ show.subject }}</td>
+                                                            <td>{{ show.message }}</td>
+                                                            <td>
+                                                                   <a href="{% url 'update_contact' id=show.id %}"  class="text-info h2"><i class="mdi mdi-pencil"></i></a>
+                                                                   <a href="{% url 'delete_contact' id=show.id %}" class="text-danger ml-3  h2" ><i class="mdi mdi-delete"></i></a>
+                                                            </td>
+                                                         </tr>
+                                                        {% endfor %}
+                                                    {% endif %}
+
+                                                    </tbody>
+                                                </table>
+                                            </div> <!-- end preview-->
+
+                                        </div> <!-- end tab-content-->
+
+                                    </div> <!-- end card body-->
+                                </div> <!-- end card -->
+                            </div><!-- end col-->
+                        </div>
+                        <!-- end row-->
+               </div>
+{% endblock %}

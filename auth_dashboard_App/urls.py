@@ -16,5 +16,11 @@ urlpatterns = [
     path('update_admin_profile/<id>', views.update_admin_profile, name="update_admin_profile"),
     path('admin_profile_delete/<id>', views.admin_profile_delete, name="admin_profile_delete"),
 
+    #--------------------- Home Page -----------------
     path('admin_home', views.home ,name="admin_home" ),
+
+    # --------------------- Contact -----------------
+    path('manage_contact', views.manage_contact, name="manage_contact"),
+    path('delete_contact/<id>', views.delete_contact, name="delete_contact"),
+    path('update_contact/<id>', views.update_contact, name="update_contact"),
     ]

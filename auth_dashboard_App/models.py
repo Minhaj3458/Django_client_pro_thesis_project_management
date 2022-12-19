@@ -15,3 +15,11 @@ class auth_profile_customer(models.Model):
     phone = models.CharField(blank=True,null=True,max_length=20)
     about = models.TextField(max_length=500, null=True, blank=True)
     image = models.ImageField(blank=True,null=True, upload_to='static/backend/auth_profile/')
+
+class Contact(models.Model):
+    name = models.CharField(max_length=300)
+    email = models.CharField(max_length=100)
+    subject = models.CharField(max_length=300)
+    message = models.TextField(max_length=500)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)

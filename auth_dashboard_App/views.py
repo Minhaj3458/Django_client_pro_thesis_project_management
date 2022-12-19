@@ -37,7 +37,7 @@ def auth_reg(request):
     return render(request, 'views/auth/authentication/auth_registration.html')
 #-------------------------- auth login ------------------------
 def auth_login(request):
-    if request.user.is_authenticated:
+    if request.user.is_superuser == True:
         return redirect('admin_home')
     if request.method == 'POST':
         password = request.POST.get('password')
@@ -198,7 +198,7 @@ def show_admin_profile(request):
         'user_info':user_info,
     }
     return render(request, 'views/auth/dashboard/admin_profile/show_admin_profile.html',context)
-#------------ home page -------------
+#------------ home page ---------------
 @login_required(login_url='admin_login')
 def home(request):
     count_user = models.User.objects.count()
@@ -212,4 +212,42 @@ def home(request):
     return render(request, 'views/auth/dashboard/home.html',context)
 
 
+#------------ manage contact page ---------------
+@login_required(login_url='admin_login')
+def manage_contact (request):
+    contact = models.Contact.objects.all().order_by('-id')
+    context ={
+        'contact': contact,
+    }
+    return render(request, 'views/auth/dashboard/contact/manage_contact.html',context)
 
+#------------ Delete contact  ---------------
+@login_required(login_url='admin_login')
+def delete_contact (request,id):
+    data = models.Contact.objects.get(id=id)
+    if data:
+        data.delete()
+        messages.success(request, 'Contact Delete Successfully!')
+        return redirect('manage_contact')
+    else:
+        messages.warning(request, 'Something is Wrong!')
+        return redirect('manage_contact')
+
+#------------ Update contact  ---------------
+@login_required(login_url='admin_login')
+def update_contact (request,id):
+    contact = models.Contact.objects.get(id=id)
+    if request.method == 'POST':
+        contact.name = request.POST.get('name')
+        contact.email = request.POST.get('email')
+        contact.subject = request.POST.get('subject')
+        contact.message = request.POST.get('message')
+        contact.save()
+        messages.success(request, 'Update Message Successfully!')
+        return redirect('manage_contact')
+    else:
+        messages.warning(request, "Message Not  Send ")
+    context = {
+        'contact': contact,
+    }
+    return render(request, 'views/auth/dashboard/contact/update_contact.html', context)

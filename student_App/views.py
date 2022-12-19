@@ -53,6 +53,7 @@ def student_reg(request):
 #---------------------------- student login -------------------#
 def student_login(request):
     if request.user.is_authenticated:
+       if request.user.is_student == True:
         return redirect('stu_profile_show')
     if request.method == 'POST':
         password = request.POST.get('password')
@@ -61,9 +62,9 @@ def student_login(request):
         user = authenticate(username=cheack_username, password=password)
         if user:
             user_info = User.objects.get(id = user.id)
-            request.session['username'] = user_info.username
-            request.session['is_student'] = user_info.is_student
-            request.session['user_id'] = user_info.id
+            # request.session['username'] = user_info.username
+            # request.session['is_student'] = user_info.is_student
+            # request.session['user_id'] = user_info.id
             if user_info.is_student == True:
                 if  user_info.student_id == cheack_student_id :
                     login(request, user)
@@ -90,7 +91,7 @@ def home(request):
 
 #---------------- show student profile ------------------#
 def stu_profile_show(request):
-    find_current_id = request.session.get('user_id')
+    find_current_id = request.user.id
     user_info = User.objects.get(id=find_current_id)
     thesis_project = Thesis_project_manage.objects.filter(user_id=find_current_id).order_by('-id')
     count_thesis = Thesis_project_manage.objects.filter(user_id=find_current_id,type='thesis').count()
@@ -141,7 +142,7 @@ def stu_profile_update(request,id):
 #---------------------------- manage student page ---------------------------#
 @login_required(login_url='student_login')
 def manage_student(request):
-    find_current_id = request.session.get('user_id')
+    find_current_id = request.user.id
     user_info = User.objects.get(id=find_current_id)
     context = {
         'user_info' : user_info

@@ -47,7 +47,7 @@
 
                                                     <div class="col">
                                                         <div>
-                                                            <h4 class="mt-1 mb-1 text-white">{{ request.session.username }} </h4>
+                                                            <h4 class="mt-1 mb-1 text-white">{{ user.username }} </h4>
                                                             <p class="font-13 text-white-50"> Student </p>
 
                                                             <ul class="mb-0 list-inline text-light">
@@ -186,7 +186,7 @@
                                                             <td>{{ show.phone }}</td>
                                                             <td>{{ show.email }}</td>
                                                             <td>{{ show.submit_by }}</td>
-                                                            <td>{{ show.description|slice:100  }}</td>
+                                                            <td>{{ show.description|slice:30  }}</td>
                                                             <td>{{ show.created_at|date:"M d, Y" }}</td>
                                                          </tr>
                                                         {% endfor %}

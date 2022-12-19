@@ -24,30 +24,39 @@
         <div class="row g-0">
             <div class="col-lg-2"></div>
             <div class="col-lg-8 py-6 px-5">
+                   {% if messages %}
+                     {% for message in messages %}
+                       <div class="alert alert-{{message.tags}} alert-dismissible  bg-{{message.tags}} text-white border-0 fade show" role="alert">
+                           <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                           <strong>{{message}}</strong>
+                       </div>
+                     {% endfor %}
+                   {% endif %}
                 <h1 class="display-5 mb-4">Contact For Any Queries</h1>
-                <form>
+                <form action=" " method="post">
+                     {% csrf_token %}
                     <div class="row g-3">
                         <div class="col-6">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="form-floating-1" placeholder="John Doe">
+                                <input type="text" class="form-control" name="name" id="form-floating-1" placeholder="Full Name" required>
                                 <label for="form-floating-1">Full Name</label>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-floating">
-                                <input type="email" class="form-control" id="form-floating-2" placeholder="name@example.com">
+                                <input type="email" class="form-control" name="email" id="form-floating-2" placeholder="Email address" required>
                                 <label for="form-floating-2">Email address</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <input type="text" class="form-control" id="form-floating-3" placeholder="Subject">
+                                <input type="text" class="form-control" name="subject" id="form-floating-3" placeholder="Subject" required>
                                 <label for="form-floating-3">Subject</label>
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-floating">
-                                <textarea class="form-control" placeholder="Message" id="form-floating-4" style="height: 150px"></textarea>
+                                <textarea class="form-control" placeholder="Message" name="message" id="form-floating-4" style="height: 150px" required></textarea>
                                 <label for="form-floating-4">Message</label>
                               </div>
                         </div>

@@ -360,7 +360,7 @@ def create_student_thesis_project(request):
 #----------------------------- manage thesis project -----------------------
 @login_required(login_url='student_login')
 def manage_student_thesis_project(request):
-    find_current_id = request.session.get('user_id')
+    find_current_id = request.user.id
     thesis_project = models.Thesis_project_manage.objects.filter(user_id=find_current_id).order_by('-id')
     context = {
         'thesis_project': thesis_project,
