@@ -45,11 +45,12 @@
                                                         <form  action="" class="form-horizontal"  enctype="multipart/form-data" method="POST">
                                                              {% csrf_token %}
                                                             <div class="row">
+                                                                <input type="text" class="form-control" id="user" name="user" value="{{data.user_id}}" placeholder="full name" hidden required>
                                                                 <div class="col-6">
                                                                     <div class="row mb-3">
                                                                         <label class="col-md-3 col-form-label" for="name">Full name</label>
                                                                         <div class="col-md-9">
-                                                                            <input type="text" class="form-control" id="name" name="name" value="{{data.name}}" placeholder="full name" required>
+                                                                            <input type="text" class="form-control" id="name" name="name" value="{{data.name}}" placeholder="full name"  required>
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">

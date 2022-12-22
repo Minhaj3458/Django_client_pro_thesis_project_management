@@ -119,8 +119,6 @@ def contact_page(request):
         contact.email = request.POST.get('email')
         contact.subject = request.POST.get('subject')
         contact.message = request.POST.get('message')
-        contact.save()
+        saves = contact.save()
         messages.success(request, 'Message Send Successfully!')
-    else:
-        messages.warning(request, "Message Not  Send ")
     return render(request,'views/frontend/page/contact.html',context)

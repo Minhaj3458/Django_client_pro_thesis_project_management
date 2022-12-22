@@ -39,8 +39,6 @@
                                         <p class="text-muted font-14">
 
                                         </p>
-
-
                                         <div class="tab-content">
                                             <div class="tab-pane show active" id="scroll-horizontal-preview">
                                                 <table id="scroll-horizontal-datatable" class="table table-bordered border-success table-dark nowrap dt-responsive  w-100">
@@ -84,18 +82,23 @@
                                                                 </td>
                                                             <td>{{ show.student_id }}</td>
                                                             <td>{{ show.teacher_id }}</td>
+
                                                             {% if show.status == True %}
                                                                 <td class="text-success"><p class="text-success">approved </p>  </td>
                                                             {% else %}
                                                                  <td class="text-danger"><p class="text-danger"> unapproved </p> </td>
                                                             {% endif %}
+                                                            {% if show.user.is_student %}
+                                                                  {% if show.status == True %}
+                                                                    <td class=""><a href="{% url 'teacher_thesis_project_status' id=show.id %}" class="btn btn-danger btn-sm">UnApproved</a></td>
 
-                                                            {% if show.status == True %}
-                                                                 <td class=""><a href="{% url 'teacher_thesis_project_status' id=show.id %}" class="btn btn-danger btn-sm">UnApproved</a></td>
-
+                                                                  {% else %}
+                                                                   <td class=""><a href="{% url 'teacher_thesis_project_status' id=show.id %}" class="btn btn-success btn-sm">Approved</a> </td>
+                                                                  {% endif %}
                                                             {% else %}
-                                                                 <td class=""><a href="{% url 'teacher_thesis_project_status' id=show.id %}" class="btn btn-success btn-sm">Approved</a> </td>
+                                                              <td> </td>
                                                             {% endif %}
+
                                                             <td>{{ show.supervisor_name }}</td>
                                                             <td>{{ show.department.department_name }}</td>
                                                             <td>{{ show.batch }}</td>
@@ -104,10 +107,14 @@
                                                             <td>{{ show.submit_by }}</td>
                                                             <td>{{ show.description|slice:100  }}</td>
                                                             <td>{{ show.created_at|date:"M d, Y" }}</td>
+                                                            {% if show.user.is_student %}
                                                             <td>
                                                                    <a href="{% url 'teacher_thesis_project_update' id=show.id %}"  class="text-info h2"><i class="mdi mdi-pencil"></i></a>
                                                                    <a href="{% url 'teacher_thesis_project_delete' id=show.id %}" class="text-danger ml-3  h2" ><i class="mdi mdi-delete"></i></a>
                                                             </td>
+                                                            {% else %}
+                                                            <td> </td>
+                                                            {% endif %}
                                                          </tr>
                                                         {% endfor %}
                                                     {% endif %}

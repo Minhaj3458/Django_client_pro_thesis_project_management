@@ -278,7 +278,7 @@ def admin_thesis_project_update(request,id):
     project_type = models.Project_type.objects.all().order_by('-id')
     thesis_type = models.Thesis_type.objects.all().order_by('-id')
     if request.method == 'POST':
-        thesis_project.user_id = request.user.id
+        thesis_project.user_id = request.POST.get('user')
         thesis_project.name = request.POST.get('name')
         thesis_project.type = request.POST.get('type')
         thesis_project.thesis_type_id = request.POST.get('thesis_type')
@@ -457,7 +457,6 @@ def teacher_thesis_project_update(request,id):
     project_type = models.Project_type.objects.all().order_by('-id')
     thesis_type = models.Thesis_type.objects.all().order_by('-id')
     if request.method == 'POST':
-        thesis_project.user_id = request.user.id
         thesis_project.name = request.POST.get('name')
         thesis_project.type = request.POST.get('type')
         thesis_project.thesis_type_id = request.POST.get('thesis_type')

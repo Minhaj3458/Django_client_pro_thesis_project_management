@@ -42,7 +42,7 @@
                                             <div class="tab-pane show active" id="input-types-preview">
                                                 <div class="row">
                                                     <div class="col-lg-12">
-                                                        <form  action="" class="form-horizontal"  enctype="multipart/form-data" method="POST">
+                                                        <form  action="" class="form-horizontal"  enctype="multipart/form-data" method="POST" >
                                                              {% csrf_token %}
                                                             <div class="row">
                                                                 <div class="col-6">
@@ -65,7 +65,7 @@
                                                                      <div class="row mb-3" >
                                                                         <label class="col-md-3 col-form-label" for="thesis_type">Thesis Type</label>
                                                                         <div class="col-md-9" id="thesis_type_show" style="visibility:Hidden;" >
-                                                                            <select class="form-control select2" id="thesis_type"  name="thesis_type" data-toggle="select2" >
+                                                                            <select class="form-control select2" id="thesis_type" name="thesis_type" data-toggle="select2"  >
                                                                                      <option value="" selected> Select Thesis Type</option>
                                                                                      {% for show in thesis_type %}
                                                                                            <option value="{{ show.id }}">{{ show.thesis_type }}</option>
@@ -76,12 +76,13 @@
                                                                     <div class="row mb-3">
                                                                         <label class="col-md-3 col-form-label" for="project_type">Project Type</label>
                                                                         <div class="col-md-9" id="project_type_show" style="visibility:Hidden;">
-                                                                            <select class="form-control select2" id="project_type" name="project_type" data-toggle="select2" >
+                                                                            <select class="form-control select2" id="project_type" name="project_type" data-toggle="select2"  >
                                                                                     <option value="" selected>Select Project Type</option>
                                                                                      {% for show in project_type %}
                                                                                            <option value="{{ show.id }}">{{ show.project_type }}</option>
                                                                                      {% endfor %}
                                                                             </select>
+
                                                                         </div>
                                                                     </div>
                                                                     <div class="row mb-3">

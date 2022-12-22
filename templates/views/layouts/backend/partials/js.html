@@ -41,10 +41,12 @@
      var current_value = dropdown.options[dropdown.selectedIndex].value;
       if (current_value == "thesis") {
            document.getElementById("thesis_type_show").style.visibility  = "visible";
+           document.getElementById("thesis_type").required = true;
            document.getElementById("project_type_show").style.visibility = "hidden";
        }
       else {
         document.getElementById("project_type_show").style.visibility = "visible";
+        document.getElementById("project_type").required = true;
         document.getElementById("thesis_type_show").style.visibility = "hidden";
 
       }

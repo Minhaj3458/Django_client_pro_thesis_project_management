@@ -32,11 +32,11 @@
                 </div>
                 <!-- Search Form End -->
             </div>
-            <div class="col-lg-8 post">
+            <div class="col-lg-8 ">
                 <div class="row g-5">
                     {% if thesis_project %}
                       {% for show in thesis_project.object_list %}
-                    <div class="col-xl-6 col-lg-12 col-md-6">
+                    <div class="col-xl-6 col-lg-12 col-md-6 post">
                         <div class="blog-item">
                             <div class="position-relative overflow-hidden">
                                 <iframe src="{{ show.pdf.url }}" frameborder="0" width="400px"
