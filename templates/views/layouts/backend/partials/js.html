@@ -43,13 +43,16 @@
            document.getElementById("thesis_type_show").style.visibility  = "visible";
            document.getElementById("thesis_type").required = true;
            document.getElementById("project_type_show").style.visibility = "hidden";
+           document.getElementById("project_type").required = false;
        }
       else {
         document.getElementById("project_type_show").style.visibility = "visible";
         document.getElementById("project_type").required = true;
         document.getElementById("thesis_type_show").style.visibility = "hidden";
+        document.getElementById("thesis_type").required = false;
 
       }
+     
     }
 </script>
 
